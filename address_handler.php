@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ScoutNav</title>
-
+<!--PHP Code by Fischer Lord cc-by-sa 3.0-->
+<!--Theme by Binarytheme.com-->
     <!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
@@ -64,90 +65,77 @@
           </li>
 </ul>
 
-            </div>
-
-        </nav>
-        
-        <div class="item">
-                                        
+                     
+                    </div>
+              </nav>
+        </div>                                   
         <!-- /. Side Panel  -->
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">Main Page</h1>
-                        <h1 class="page-subhead-line">Live chat isn't fully working yet! Everything else is working</h1>
+                        <h1 class="page-head-line">Setup</h1>
+                        <h1 class="page-subhead-line">Looking nice! This page shows you the generated links used to direct people to their destination. Scroll down to continue.</h1>
                     </div>
-                </div>
-                <!-- /. ROW  MIDDLE PANELS_change color to scouting red -->
-               <div class="panel panel-default">
+               </div>
 
-                  <div align="center"><img src="assets/img/slideshow/scoutnavlogosmall.png" alt="" />
-                                           </div>          
-                                    </div>
-                                    
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="main-box mb-dull">
-                            <a href="table2.html">
-                                <i class="fa fa-comments fa-5x"></i>
-                                <h5>Live Chat</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-box mb-dull">
-                            <a href="/joomla/index.php/8-cat-1standard/3-maps">
-                                <i class="fa fa-compass fa-5x"></i>
-                                <h5>Directions</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-box mb-dull">
-                            <a href="/joomla/">
-                                <i class="fa fa-phone fa-5x"></i>
-                                <h5>Contact Info</h5>
-                            </a>
-                        </div>
-                    </div>
+    <div>
+<img src="assets/img/logos/Google_Maps_logo.png" />
+<img src="assets/img/logos/screen shot 2015 10 08 at 2.17.01 pm.png" width="119" height="112" align="right" />
+    </div>
+<br>
+<br>
+    <div>
+ <p>*Starting at Northwest Presbyterian Church is assumed for Google Maps. Waze uses current location*</p>
+    </div>     
+    <div class="panel panel-default">
+                            
+            <!-- /. PHP  -->
+      <?php
+//Check whether the form has been submitted
+if (array_key_exists('check_submit', $_GET)) {
+   
+   //print recieved data in browser for user to see
+   echo "Street Address: {$_GET['streetaddress']}<br />";
+   echo "City, St: {$_GET['cityst']}<br />";
+   echo "Postal Code: {$_GET['postalcode']}<br /><br />";
+   //builds custom google maps link
+   echo "Google Maps:";
+   "<br />";
+   echo "   https://www.google.com/maps/dir/Northwest+Presbyterian+Church,+Northside+Drive+Northwest,+Atlanta,+GA/{$_GET['streetaddress']}+{$_GET['cityst']}+{$_GET['postalcode']} <br /><br />"; 
+   "<br />";
+   //builds custom waze link
+   echo "Waze:";
+   "<br />";
+   echo 
+   "  http://waze.to/?q={$_GET['streetaddress']}%{$_GET['cityst']}%{$_GET['postalcode']} <br /><br />";
+   
+} else {
+	//error thing
+   echo "Error: Please fill out form!";
+}
+?>
 
-                </div>
-                        <hr />
-
-                        
-              
-                    
-                        <div class="btn-group" align="right">
-                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Administration <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="setup.html">Start Here!</a></li>
-                                            <li><a href="/joomla/administrator">Joomla Panel</a></li>
-                                        </ul>
-                                      </div>
-                                      <div> 
-                                      <i class="fa fa-hand-o-up fa-3x" align="right">
-                                      </i><h1 class="page-head">SMOTM- Start Here!</h1>
-                                      </div>
-                                </div> 
-                          </div> 
-                    </div>
-                    <!-- /.REVIEWS &  SLIDESHOW  -->
-                                        
-                <!--/.ROW-->
-
-            </div>
-            <!-- /. PAGE INNER  -->
-      
-        <!-- /. PAGE WRAPPER  -->
     <!-- /. WRAPPER  -->
+    </div>
+        <div>
+             <br>
+             <br>
+             <h1 align="center" class="page-head"><a href="wizard.html" target="_blank">Next Step: Joomla</a></h1>
+             <p align='center'>(Link opens in new tab)
+        </div>
+                   </div>         
+              </div>
+         </div>
+    </div>
 
     <div id="footer-sec">
         ScoutNav | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
         <a href="http://www.w3.org/html/logo/">
-<img src="https://www.w3.org/html/logo/badge/html5-badge-h-css3-storage.png" width="84" height="32" alt="HTML5 Powered with CSS3 / Styling, and Offline &amp; Storage" title="HTML5 Powered with CSS3 / Styling, and Offline &amp; Storage">
+<img src="https://www.w3.org/html/logo/badge/html5-badge-h-css3-storage.png" width="84" height="32" alt="HTML5 Powered with CSS3 / Styling, and Offline &amp; Storage" title="HTML5 Powered with CSS3 / Styling, and Offline &amp; Storage"> 
 </a>
     </div>
+    
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
@@ -163,3 +151,6 @@
 
 </body>
 </html>
+
+
+
