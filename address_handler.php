@@ -112,7 +112,7 @@ if (array_key_exists('check_submit', $_GET)) {
    
 } else {
 	//error thing
-   echo "Error: Please fill out form!";
+   echo "Error: Please fill out ALL form elements!";
 }
 ?>
 

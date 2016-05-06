@@ -15,6 +15,7 @@
     <link href="assets/css/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css' />
+    
 </head>
 <body>
     <div id="wrapper">
@@ -51,13 +52,13 @@
                         <a href="index.html"><i class="fa fa-home "></i>Main Page</a>
                     </li>
                     <li>
-                        <a href="/joomla/"><i class="fa fa-phone "></i>Contact Info</a>
+                        <a href="/joomla/index.php/contacts"><i class="fa fa-phone "></i>Contact Info</a>
                     </li>
                     <li>
                    <a href="table2.html"><i class="fa fa-comments "></i>Chat </a>
                      </li>
                      <li>
-                      <a href="/joomla/index.php/8-cat-1standard/3-maps"><i class="fa fa-compass "></i>Directions </a>
+                      <a href="/joomla/index.phps"><i class="fa fa-compass "></i>Directions </a>
                       </li>
                       <li>
                       <a href="background.html"><i class="fa fa-code "></i>About</a>      
@@ -76,25 +77,54 @@
 <!--add hospital integration-->
                     </div>
                 </div>
-                      <div>
-                           <h1 class="page-head">STEP 1</h1>
-                      </div>
                 <!-- /. ROW  -->
                <div class="row">
                   <div class="col-lg-12">
                   <div>
-                  <h1 class="page-header">Enter in Full Destination Address</h1>                 
-                       <form name="address_form" action="address_handler.php" method="GET">
-                             <input type="hidden" name="check_submit" value="1" />
-                              Street Address <br>
+                  <h1 class="page-header">Enter in Full Destination Address</h1>  
+                  <div id="readroot" style="display: none"> 
+                                
+                       
+                       <input type="button" value="Remove review"
+		                  onclick="this.parentNode.parentNode.removeChild(this.parentNode);">
+                          <br>
+        
+                             <input type="hidden" name="check_submit" value="1">
+                              Street Address or Latitude<br>
                              <input type="text" name="streetaddress"><br>
-                             City, St <br>
+                             City, State or Longitude<br>
                              <input type="text" name="cityst"><br>
                              Postal Code <br>
                              <input type="text" name="postalcode"><br>
-                             <br><br>
+                       </div>
+                             <br>
+                       <form method="get" action="address_handler.php">
+                             <span id="writeroot"></span>
+                             
+                             <input type="button" id="moreFields" value="Add another destination" >
                              <input type="submit" value="Continue to next step!">
                        </form>
+                             <script>
+					   var counter = 0;
+
+function moreFields() {
+	counter++;
+	var newFields = document.getElementById('readroot').cloneNode(true);
+	newFields.id = '';
+	newFields.style.display = 'block';
+	var newField = newFields.childNodes;
+	for (var i=0;i<newField.length;i++) {
+		var theName = newField[i].name
+		if (theName)
+			newField[i].name = theName + counter;
+	}
+	var insertHere = document.getElementById('writeroot');
+	insertHere.parentNode.insertBefore(newFields,insertHere);
+}
+
+window.onload = moreFields;
+</script>
+                       
                   </div>
                         </div>
                     </div>
