@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ScoutNav</title>
+   <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78768634-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <!--PHP Code by Fischer Lord cc-by-sa 3.0-->
 <!--Theme by Binarytheme.com-->
     <!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
-    <script src="http://use.fonticons.com/7c6b2742.js"></script>
+    
        <!--CUSTOM BASIC STYLES-->
     <link href="assets/css/basic.css" rel="stylesheet" />
     <!--CUSTOM MAIN STYLES-->
@@ -19,18 +30,6 @@
 </head>
 <body>
     <div id="wrapper">
-        <nav class="navbar navbar-default navbar-cls-top " style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">ScoutNav</a>
-            </div>
-      
-        </nav>
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side">
             <div class="sidebar-collapse">
@@ -55,10 +54,7 @@
             <a href="/joomla/"><i class="fa fa-phone "></i>Contact Info</a>
           </li>
 <li>
-            <a href="table2.html"><i class="fa fa-comments "></i>Chat </a>
-            
-<li>
-          <a href="/joomla/index.php/8-cat-1standard/3-maps"><i class="fa fa-compass "></i>Directions </a> 
+          <a href="navigation.html"><i class="fa fa-compass "></i>Directions </a> 
                       </li>
                       <li>
                       <a href="background.html"><i class="fa fa-code "></i>About</a>
@@ -75,7 +71,6 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-head-line">Setup</h1>
-                        <h1 class="page-subhead-line">Looking nice! This page shows you the generated links used to direct people to their destination. Scroll down to continue.</h1>
                     </div>
                </div>
 
@@ -86,54 +81,56 @@
 <br>
 <br>
     <div>
- <p>*Starting at Northwest Presbyterian Church is assumed for Google Maps. Waze uses current location*</p>
+ <h4><i>Please note that changes take up to 5 minutes to appear on the live page that users will see. You're seeing preview of this action.</i></h4>
     </div>     
     <div class="panel panel-default">
                             
             <!-- /. PHP  -->
+      <p> If printed data is wrong, don't worry, go back and redo</p>
+      <br>
+      <br>
       <?php
-//Check whether the form has been submitted
-if (array_key_exists('check_submit', $_GET)) {
+    //validates stuff 
+if (array_key_exists('check_submit', $_GET)) { 
    
-   //print recieved data in browser for user to see
-   echo "Street Address: {$_GET['streetaddress']}<br />";
-   echo "City, St: {$_GET['cityst']}<br />";
-   echo "Postal Code: {$_GET['postalcode']}<br /><br />";
+   //print recieved data in browser for user to see if they messed up 
+   echo "Address: {$_GET['fulladdress1']}<br />";
    //builds custom google maps link
    echo "Google Maps:";
    "<br />";
-   echo "   https://www.google.com/maps/dir/Northwest+Presbyterian+Church,+Northside+Drive+Northwest,+Atlanta,+GA/{$_GET['streetaddress']}+{$_GET['cityst']}+{$_GET['postalcode']} <br /><br />"; 
-   "<br />";
+   echo $gmapslink = "https://www.google.com/maps/dir/Northwest+Presbyterian+Church,+Northside+Drive+Northwest,+Atlanta,+GA/{$_GET['fulladdress1']} <br><br> http://waze.to/?q={$_GET['fulladdress1']}"; 
    //builds custom waze link
    echo "Waze:";
    "<br />";
-   echo 
-   "  http://waze.to/?q={$_GET['streetaddress']}%{$_GET['cityst']}%{$_GET['postalcode']} <br /><br />";
-   
-} else {
+   echo $wazelink = "http://waze.to/?q={$_GET['fulladdress1']}";
+   //give me a path
+   $file_path = "/var/www/troop232atl.scoutnav.org/public_html/navigationframe.html";
+   //open file
+   $fileOpen = fopen($file_path , 'w+'); 
+	//takes form data and generated master link to google maps 
+    $file_contents = str_replace($path_to_file,"https://www.google.com/maps/dir/Northwest+Presbyterian+Church,+Northside+Drive+Northwest,+Atlanta,+GA/{$_GET['fulladdress1']}",$file_contents); 
+	//GOOGLE MAPS SYSTEM
+    if (file_exists($file_path))
+       $fh = fopen($file_path, 'w+');
+	    if (fwrite($fh, $gmapslink) === FALSE)
+        echo "Cannot write to file";
+  } else {
 	//error thing
-   echo "Error: Please fill out ALL form elements!";
+   echo "Error: Please go back and try again. If problem persists, please contact support.";
 }
-?>
-
-    <!-- /. WRAPPER  -->
+   
+   ?> 
+    <!-- /. WRAPPER -->
     </div>
-        <div>
-             <br>
-             <br>
-             <h1 align="center" class="page-head"><a href="wizard.html" target="_blank">Next Step: Joomla</a></h1>
-             <p align='center'>(Link opens in new tab)
-        </div>
-                   </div>         
-              </div>
-         </div>
-    </div>
+    <p>Starting at Northwest Presbyterian Church is assumed for Google Maps. Waze uses current location.</p>
+         <div>
+             </div>
+                  </div>
+                       </div>
 
     <div id="footer-sec">
-        ScoutNav | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
-        <a href="http://www.w3.org/html/logo/">
-<img src="https://www.w3.org/html/logo/badge/html5-badge-h-css3-storage.png" width="84" height="32" alt="HTML5 Powered with CSS3 / Styling, and Offline &amp; Storage" title="HTML5 Powered with CSS3 / Styling, and Offline &amp; Storage"> 
-</a>
+        ScoutNav | Design By: <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a> |
+        <a href="privacy.html" target="_blank">Privacy Policy</a>
     </div>
     
     <!-- /. FOOTER  -->
@@ -146,7 +143,8 @@ if (array_key_exists('check_submit', $_GET)) {
     <script src="assets/js/jquery.metisMenu.js"></script>
        <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
-    
+    <!--font awesome-->
+    <script src="http://use.fonticons.com/7c6b2742.js"></script>
 
 
 </body>
