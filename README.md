@@ -1,3 +1,4 @@
 # ScoutNav-Master
-This is the main frontend code base. (the website you first see when loading scoutnav)
-The Joomla things arn't up because those are in the CMS. However, the form processing systems will go here as well. That code will definately be worth looking at!
+ScoutNav is a free and open source group navigation system. Ever had a large group, traveling in many different vehicles? Forget using 
+paper to get directions, only to have extra people show up. Use ScoutNav. Type in start and end address, and ScoutNav does the rest. Built 
+for areas with little cell service, and compatible with Google Maps and Waze, it makes everyone happy. Also built to be secure and insanly simple to use. 
