@@ -10,10 +10,8 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-78768634-2', 'auto');
   ga('send', 'pageview');
-
 </script>
 <!--PHP Code by Fischer Lord cc-by-sa 3.0-->
 <!--Theme by Binarytheme.com-->
@@ -23,8 +21,6 @@
     
        <!--CUSTOM BASIC STYLES-->
     <link href="assets/css/basic.css" rel="stylesheet" />
-    <!--CUSTOM MAIN STYLES-->
-    <link href="assets/css/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css' />
 </head>
@@ -49,16 +45,8 @@
 
 
                     <li>
-                        <a class="active-menu" href="index.html"><i class="fa fa-home "></i>Main Page</a> 
-<li>
-            <a href="/joomla/"><i class="fa fa-phone "></i>Contact Info</a>
-          </li>
-<li>
-          <a href="navigation.html"><i class="fa fa-compass "></i>Directions </a> 
-                      </li>
-                      <li>
-                      <a href="background.html"><i class="fa fa-code "></i>About</a>
-          </li>
+                        <a class="active-menu" href="index.html"><i class="fa fa-home "></i>Back to home</a> 
+                        </li>
 </ul>
 
                      
@@ -75,8 +63,8 @@
                </div>
 
     <div>
-<img src="assets/img/logos/Google_Maps_logo.png" />
-<img src="assets/img/logos/screen shot 2015 10 08 at 2.17.01 pm.png" width="119" height="112" align="right" />
+<img src="assets/img/logos/maps_logo.png" />
+<img src="assets/img/logos/waze_logo.jpg" width="150" height="141" align="right" />
     </div>
 <br>
 <br>
@@ -86,51 +74,48 @@
     <div class="panel panel-default">
                             
             <!-- /. PHP  -->
-      <p> If printed data is wrong, don't worry, go back and redo</p>
-      <br>
       <br>
       <?php
     //validates stuff 
 if (array_key_exists('check_submit', $_GET)) { 
    
    //print recieved data in browser for user to see if they messed up 
-   echo "Address: {$_GET['fulladdress1']}<br />";
-   //builds custom google maps link
-   echo "Google Maps:";
-   "<br />";
-   echo $gmapslink = "https://www.google.com/maps/dir/Northwest+Presbyterian+Church,+Northside+Drive+Northwest,+Atlanta,+GA/{$_GET['fulladdress1']} <br><br> http://waze.to/?q={$_GET['fulladdress1']}"; 
-   //builds custom waze link
-   echo "Waze:";
-   "<br />";
-   echo $wazelink = "http://waze.to/?q={$_GET['fulladdress1']}";
-   //give me a path
-   $file_path = "/var/www/troop232atl.scoutnav.org/public_html/navigationframe.html";
-   //open file
-   $fileOpen = fopen($file_path , 'w+'); 
-	//takes form data and generated master link to google maps 
-    $file_contents = str_replace($path_to_file,"https://www.google.com/maps/dir/Northwest+Presbyterian+Church,+Northside+Drive+Northwest,+Atlanta,+GA/{$_GET['fulladdress1']}",$file_contents); 
-	//GOOGLE MAPS SYSTEM
+   echo "Input Destination Address: {$_GET['fulladdress1']}<br />";
+   //builds first half of Gmaps script PRIMARY DESTINATION
+   $gmapslink2 = "https://www.google.com/maps/dir/Northwest+Presbyterian+Church,+Northside+Drive+Northwest,+Atlanta,+GA/ {$_GET['fulladdress1']}";
+   $gmapslink = "window.location = '$gmapslink2';";
+   //builds custom waze javascript for PRIMARY DESTINATION
+   $wazelink2 = "http://waze.to/?q={$_GET['fulladdress1']}";
+   $wazelink = "window.location = '$wazelink2';";
+   //give me a path to GOOGLE MAPS
+   $file_path = "/var/www/troop232atl.scoutnav.org/public_html/go/googlemaps.js"; 
+   $file_path_2 = "/var/www/troop232atl.scoutnav.org/public_html/go/waze.js";
+	//write to a file
     if (file_exists($file_path))
-       $fh = fopen($file_path, 'w+');
-	    if (fwrite($fh, $gmapslink) === FALSE)
-        echo "Cannot write to file";
+       $fg = fopen($file_path, 'w+');
+	     if (fwrite($fg, $gmapslink) === FALSE)
+		    echo "Error: Cannot write to file";
+	if (file_exists($file_path_2))
+       $fw = fopen($file_path_2, 'w+');
+	     if (fwrite($fw, $wazelink) === FALSE)
+		    echo "Error: Cannot write to file";
   } else {
 	//error thing
    echo "Error: Please go back and try again. If problem persists, please contact support.";
-}
-   
+  }  
    ?> 
     <!-- /. WRAPPER -->
     </div>
-    <p>Starting at Northwest Presbyterian Church is assumed for Google Maps. Waze uses current location.</p>
+    <p>Starting at Northwest Presbyterian Church is assumed for Google Maps. Waze will use current location. The hospital function relies on location services, to enable accessing a hospital from anywhere and not just the destination.</p>
+    <p><i>Apple Maps is not supported as it has been shown to be unreliable in rural areas.</i></p>
          <div>
              </div>
-                  </div>
+          </div>
                        </div>
 
     <div id="footer-sec">
         ScoutNav | Design By: <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a> |
-        <a href="privacy.html" target="_blank">Privacy Policy</a>
+        <a href="privacy.html" target="_blank">Privacy Policy</a> | <a href="background.html">About</a>
     </div>
     
     <!-- /. FOOTER  -->
@@ -149,6 +134,7 @@ if (array_key_exists('check_submit', $_GET)) {
 
 </body>
 </html>
+
 
 
 

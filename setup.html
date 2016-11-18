@@ -33,7 +33,7 @@
                     <li>
                         <div class="user-img-div">
                             <img src="assets/img/logos/BSA.jpg" class="img-thumbnail" alt="bsalogo" />
-
+                        <!--Organization specific branding -->
                             <div class="inner-text">
                                 Registered to Troop 232
                             <br />
@@ -48,11 +48,8 @@
                         <a href="index.html"><i class="fa fa-home "></i>Main Page</a>
                     </li>
                     <li>
-                        <a href="/joomla/index.php/contacts"><i class="fa fa-phone "></i>Contact Info</a>
+                        <a href="contacts.html"><i class="fa fa-phone "></i>Contact Info</a>
                      </li>
-                     <li>
-                      <a href="navigation.html"><i class="fa fa-compass "></i>Directions </a>
-                      </li>
                       <li>
                       <a href="background.html"><i class="fa fa-code "></i>About</a>      
                     </li>
@@ -66,7 +63,6 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-head-line">Setup</h1>
-                        <h1 class="page-subhead-line">Fill this out for a quick trip setup!</h1>
 <!--add hospital integration-->
                     </div>
                 </div>
@@ -75,11 +71,10 @@
                <div class="col-lg-12">
                   
                   <!--FORM CODE-->
-                  <h1 class="page-header">Enter in Full Destination Address</h1>
+                  <h1 class="page-header">Enter trip information:</h1>
                       <form method="GET" action="address_handler.php " >
-                      Full address:<br>
+                      Full destination address<br>
                   <input type="text" name="fulladdress1" id="fulladdress1">
-                  <input type="hidden" name="check_submit" value="1">
                   <br>
                  <input type="submit" value="SUBMIT" class="btn btn-success"> 
            </form>
